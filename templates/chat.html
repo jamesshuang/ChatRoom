@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Current Rooms</h2>
+  {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+  <ul>
+  {% for room in rooms %}
+    <li><a href="{{ url_for('room', roomname=room.room_name) }}">{{ room.room_name }}</a>
+  {% else %}
+    <li><em>There are currently no chat rooms. Please create one.</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

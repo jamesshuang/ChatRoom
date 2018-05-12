@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Create new chat room{% endblock %}
+{% block body %}
+  <h2>New Chat Room</h2>
+  {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+  <form action="{{ url_for('create_room') }}"  method="post">
+    <dl>
+      <dt>Chat room topic:
+      <dd><input type="text" name="topic" size="30">
+    </dl>
+    <div class="actions"><input type="submit" value="Create"></div>
+  </form>
+{% endblock %}

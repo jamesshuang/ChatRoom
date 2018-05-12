@@ -1,0 +1,34 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | Chat</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+  <h1>Chat</h1>
+  <div class="metanav">
+  {% if not session.user_id %}
+    <a href="{{ url_for('login') }}" method="get">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  <div class="navigation">
+  {% if not g.user %}
+    <a href="{{ url_for('signup') }}">sign up</a>
+  {% elif not g.room %}
+    <a href="{{ url_for('create_room') }}">create new chatroom</a>
+  {% else %}
+    <a href="{{ url_for('leave_room') }}">leave the chatroom</a>
+  {% endif %}
+  </div>
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class="flashes">
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <div class="body">
+  {% block body %}{% endblock %}
+  </div>
+</div>

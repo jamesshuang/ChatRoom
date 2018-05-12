@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>{{ room }}</h2>
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+  <ul class="messages" id="messages">
+  {% for message in messages %}
+      {{ message.text }}
+    </br>
+  {% else %}
+    <li id="no_mess_li"><em id="no_mess">There's no message so far.</em>
+  {% endfor %}
+  </ul>
+  <div class="twitbox">
+    <h3>Enter new message: (Click 'send' button when complete)</h3>
+    <form name="form">
+      <p><input type="text" name="new_message" size="60" id="new_message" value="">
+         <input type="button" onclick="makePost()" id="submit" value="Send">
+    </form>
+  </div>
+{% endblock %}
